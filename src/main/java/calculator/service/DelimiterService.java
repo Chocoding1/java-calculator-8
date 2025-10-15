@@ -31,16 +31,17 @@ public class DelimiterService {
     }
 
     private void addCustomDelimiter(String inputStr) {
-        String customDelimiterWrapper = inputStr.substring(inputStr.indexOf(CUSTOM_DELIMITER_PREFIX),
-                inputStr.indexOf(CUSTOM_DELIMITER_SUFFIX) + 2);
+        String customDelimiters = extractCustomDelimiters(inputStr);
 
-        for (int i = 2; i < customDelimiterWrapper.length(); i++) {
-            if (customDelimiterWrapper.charAt(i) == '\\') {
-                break;
-            }
-            delimiters.addDelimiter(customDelimiterWrapper.charAt(i) + "");
+        for (int i = 0; i < customDelimiters.length(); i++) {
+            delimiters.addDelimiter(customDelimiters.charAt(i) + "");
         }
     }
 
+    private static String extractCustomDelimiters(String inputStr) {
+        String customDelimiterWrapper = inputStr.substring(inputStr.indexOf(CUSTOM_DELIMITER_PREFIX),
+                inputStr.indexOf(CUSTOM_DELIMITER_SUFFIX) + 2);
 
+        return customDelimiterWrapper.substring(2, customDelimiterWrapper.length() - 2);
+    }
 }
