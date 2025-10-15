@@ -2,12 +2,12 @@ package calculator.model.delimiter;
 
 import java.util.Set;
 
-public class Delimiters {
+public class Delimiter {
 
-    private static Delimiters instance;
+    private static Delimiter instance;
     private final Set<String> delimiters = Set.of(",", ":");
 
-    private Delimiters() {
+    private Delimiter() {
     }
 
     public void addDelimiter(String delimiter) {
@@ -25,9 +25,9 @@ public class Delimiters {
         return sb.toString();
     }
 
-    public static Delimiters getInstance() {
+    public static Delimiter getInstance() {
         if (instance == null) {
-            return new Delimiters();
+            return new Delimiter();
         }
         return instance;
     }

@@ -3,12 +3,12 @@ package calculator.service;
 import static calculator.model.delimiter.DelimiterConstant.CUSTOM_DELIMITER_PREFIX;
 import static calculator.model.delimiter.DelimiterConstant.CUSTOM_DELIMITER_SUFFIX;
 
-import calculator.model.delimiter.Delimiters;
+import calculator.model.delimiter.Delimiter;
 
 public class DelimiterService {
 
     private static DelimiterService instance;
-    private final Delimiters delimiters = Delimiters.getInstance();
+    private final Delimiter delimiters = Delimiter.getInstance();
 
     private DelimiterService() {
     }
