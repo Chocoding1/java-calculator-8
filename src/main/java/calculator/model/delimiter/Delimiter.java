@@ -1,13 +1,11 @@
 package calculator.model.delimiter;
 
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class Delimiter {
 
     private static Delimiter instance;
-    private final Set<Character> delimiters = new HashSet<>(List.of(',', ':'));
+    private final Set<Character> delimiters = Set.of(',', ':');
 
     private Delimiter() {
     }
