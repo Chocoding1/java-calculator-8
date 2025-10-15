@@ -14,6 +14,17 @@ public class Delimiters {
         delimiters.add(delimiter);
     }
 
+    public String getDelimiters() {
+        StringBuilder sb = new StringBuilder().append("[");
+
+        for (String delimiter : delimiters) {
+            sb.append(delimiter);
+        }
+        sb.append("]");
+
+        return sb.toString();
+    }
+
     public static Delimiters getInstance() {
         if (instance == null) {
             return new Delimiters();
