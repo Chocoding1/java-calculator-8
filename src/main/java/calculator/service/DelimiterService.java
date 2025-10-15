@@ -34,7 +34,7 @@ public class DelimiterService {
         String customDelimiters = extractCustomDelimiters(inputStr);
 
         for (int i = 0; i < customDelimiters.length(); i++) {
-            delimiters.addDelimiter(customDelimiters.charAt(i) + "");
+            delimiters.addDelimiter(customDelimiters.charAt(i));
         }
     }
 
