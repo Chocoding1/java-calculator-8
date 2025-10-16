@@ -3,6 +3,7 @@ package calculator.model.delimiter;
 import static calculator.model.delimiter.DelimiterConstant.CUSTOM_DELIMITER_PREFIX;
 import static calculator.model.delimiter.DelimiterConstant.CUSTOM_DELIMITER_SUFFIX;
 
+import calculator.model.str.Str;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,8 +23,13 @@ public class Delimiter {
         return instance;
     }
 
-    public void addDelimiter(Character delimiter) {
-        delimiters.add(delimiter);
+    public String addCustomDelimiters(Str str) {
+        String inputStr = str.getStr();
+        if (str.isContainCustomDelimiters()) {
+            String customDelimiters = extractCustomDelimiters(inputStr);
+            addDelimiter(customDelimiters);
+        }
+        return getDelimiters();
     }
 
     public String getDelimiters() {
@@ -37,7 +43,13 @@ public class Delimiter {
         return sb.toString();
     }
 
-    public String extractCustomDelimiters(String inputStr) {
+    private void addDelimiter(String customDelimiters) {
+        for (int i = 0; i < customDelimiters.length(); i++) {
+            delimiters.add(customDelimiters.charAt(i));
+        }
+    }
+
+    private String extractCustomDelimiters(String inputStr) {
         String customDelimiterWrapper = inputStr.substring(inputStr.indexOf(CUSTOM_DELIMITER_PREFIX),
                 inputStr.indexOf(CUSTOM_DELIMITER_SUFFIX) + 2);
 
