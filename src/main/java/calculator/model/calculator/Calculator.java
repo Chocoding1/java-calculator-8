@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Calculator {
 
-    private List<PositiveNum> numbers;
+    private final List<PositiveNum> numbers;
 
     public Calculator(List<PositiveNum> numbers) {
         this.numbers = numbers;
