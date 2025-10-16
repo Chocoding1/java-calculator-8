@@ -1,14 +1,13 @@
 package calculator.service;
 
 import static calculator.model.delimiter.DelimiterConstant.CUSTOM_DELIMITER_PREFIX;
-import static calculator.model.delimiter.DelimiterConstant.CUSTOM_DELIMITER_SUFFIX;
 
 import calculator.model.delimiter.Delimiter;
 
 public class DelimiterService {
 
     private static DelimiterService instance;
-    private final Delimiter delimiters = Delimiter.getInstance();
+    private final Delimiter delimiter = Delimiter.getInstance();
 
     private DelimiterService() {
     }
@@ -31,17 +30,10 @@ public class DelimiterService {
     }
 
     private void addCustomDelimiter(String inputStr) {
-        String customDelimiters = extractCustomDelimiters(inputStr);
+        String customDelimiters = delimiter.extractCustomDelimiters(inputStr);
 
         for (int i = 0; i < customDelimiters.length(); i++) {
-            delimiters.addDelimiter(customDelimiters.charAt(i));
+            delimiter.addDelimiter(customDelimiters.charAt(i));
         }
-    }
-
-    private static String extractCustomDelimiters(String inputStr) {
-        String customDelimiterWrapper = inputStr.substring(inputStr.indexOf(CUSTOM_DELIMITER_PREFIX),
-                inputStr.indexOf(CUSTOM_DELIMITER_SUFFIX) + 2);
-
-        return customDelimiterWrapper.substring(2, customDelimiterWrapper.length() - 2);
     }
 }
