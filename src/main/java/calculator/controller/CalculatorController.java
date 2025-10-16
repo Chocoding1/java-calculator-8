@@ -1,8 +1,12 @@
 package calculator.controller;
 
+import calculator.model.calculator.Calculator;
+import calculator.model.positivenum.PositiveNum;
+import calculator.model.str.Str;
 import calculator.service.DelimiterService;
 import calculator.service.SeparationService;
 import calculator.view.InputView;
+import java.util.List;
 
 public class CalculatorController {
 
@@ -23,9 +27,12 @@ public class CalculatorController {
 
     public void startApp() {
         String inputStr = inputView.inputViewRendering();
+        Str str = new Str(inputStr);
 
         delimiterService.checkCustomDelimiter(inputStr);
-        int[] numbers = separationService.separate(inputStr);
+        List<PositiveNum> positiveNumList = separationService.separate(inputStr);
+        Calculator calculator = new Calculator(positiveNumList);
+        int result = calculator.plus();
     }
 
 }
