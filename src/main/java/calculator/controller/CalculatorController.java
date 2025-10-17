@@ -30,10 +30,12 @@ public class CalculatorController {
         Str str = new Str(inputStr);
 
         String delimiters = delimiter.addCustomDelimiters(str);
+
         List<PositiveNum> positiveNumList = str.separateStr(delimiters);
 
         Calculator calculator = new Calculator(positiveNumList);
         int result = calculator.plus();
+
         outputView.renderingOutputView(result);
     }
 
