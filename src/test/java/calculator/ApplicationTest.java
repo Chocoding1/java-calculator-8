@@ -45,15 +45,8 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    @DisplayName("커스텀 구분자 없이 등록틀만 입력 시 정상 반환")
     void 성공_테스트_4() {
-        assertSimpleTest(() -> {
-            run("//*\\n12:3");
-            assertThat(output()).contains("결과 : 15");
-        });
-    }
-
-    @Test
-    void 성공_테스트_5() {
         assertSimpleTest(() -> {
             run("//\\n1:23");
             assertThat(output()).contains("결과 : 24");
@@ -61,15 +54,26 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트_1() {
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("-1,2,3"))
-                        .isInstanceOf(IllegalArgumentException.class)
-        );
+    @DisplayName("소수 입력 테스트")
+    void 성공_테스트_5() {
+        assertSimpleTest(() -> {
+            run("//;\\n1:2.3");
+            assertThat(output()).contains("결과 : 3.3");
+        });
     }
 
     @Test
-    void 예외_테스트_2() {
+    @DisplayName("커스텀 구분자로 . 추가 + 소수 입력 테스트")
+    void 성공_테스트_6() {
+        assertSimpleTest(() -> {
+            run("//.\\n1:2.3");
+            assertThat(output()).contains("결과 : 6");
+        });
+    }
+
+    @Test
+    @DisplayName("음수 입력 시 예외 발생")
+    void 예외_테스트_1() {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("1,2,-3:4"))
                         .isInstanceOf(IllegalArgumentException.class)
@@ -77,15 +81,17 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트_3() {
+    @DisplayName("구분자만 연속 입력 시 예외 발생")
+    void 예외_테스트_2() {
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("1,2,;3:4"))
+                assertThatThrownBy(() -> runException("1,2,:3:4"))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
 
     @Test
-    void 예외_테스트_4() {
+    @DisplayName("등록된 구분자 외의 구분자 입력 시 예외 발생")
+    void 예외_테스트_3() {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("1,2-3:4"))
                         .isInstanceOf(IllegalArgumentException.class)
@@ -93,7 +99,8 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트_5() {
+    @DisplayName("등록된 구분자 외의 구분자 입력 시 예외 발생")
+    void 예외_테스트_4() {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("//;\\n1,2*3:4"))
                         .isInstanceOf(IllegalArgumentException.class)

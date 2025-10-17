@@ -4,6 +4,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import calculator.model.positivenum.PositiveNum;
+import java.math.BigDecimal;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,8 +12,8 @@ import org.junit.jupiter.api.Test;
 class CalculatorTest {
 
     @Test
-    @DisplayName("덧셈 연산 테스트")
-    void plus_test() {
+    @DisplayName("정수 덧셈 연산 테스트")
+    void plus_integer_test() {
         //given
         List<PositiveNum> numbers = List.of(
                 new PositiveNum("1"),
@@ -23,8 +24,26 @@ class CalculatorTest {
 
         //when & then
         assertSimpleTest(() -> {
-            int result = calculator.plus();
-            assertEquals(result, 6);
+            BigDecimal result = calculator.plus();
+            assertEquals(result, new BigDecimal("6"));
+        });
+    }
+
+    @Test
+    @DisplayName("소수 덧셈 연산 테스트")
+    void plus_decimal_test() {
+        //given
+        List<PositiveNum> numbers = List.of(
+                new PositiveNum("1.2"),
+                new PositiveNum("2.3"),
+                new PositiveNum("3.4")
+        );
+        Calculator calculator = new Calculator(numbers);
+
+        //when & then
+        assertSimpleTest(() -> {
+            BigDecimal result = calculator.plus();
+            assertEquals(result, new BigDecimal("6.9"));
         });
     }
 }
