@@ -6,6 +6,7 @@ import calculator.model.positivenum.PositiveNum;
 import calculator.model.str.Str;
 import calculator.view.InputView;
 import calculator.view.OutputView;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class CalculatorController {
@@ -38,14 +39,14 @@ public class CalculatorController {
         List<PositiveNum> positiveNumList = str.separateStr(delimiters);
 
         Calculator calculator = new Calculator(positiveNumList);
-        int result = calculator.plus();
+        BigDecimal result = calculator.plus();
 
         outputView.renderingOutputView(result);
     }
 
     private boolean isEmpty(String inputStr) {
         if (inputStr.isEmpty()) {
-            outputView.renderingOutputView(0);
+            outputView.renderingOutputView(new BigDecimal("0"));
             return true;
         }
         return false;

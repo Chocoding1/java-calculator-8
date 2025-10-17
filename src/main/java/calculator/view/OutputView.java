@@ -1,5 +1,7 @@
 package calculator.view;
 
+import java.math.BigDecimal;
+
 public class OutputView {
 
     private static OutputView instance;
@@ -14,7 +16,7 @@ public class OutputView {
         return instance;
     }
 
-    public void renderingOutputView(int result) {
+    public void renderingOutputView(BigDecimal result) {
         System.out.println("결과 : " + result);
     }
 }

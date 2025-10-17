@@ -1,29 +1,31 @@
 package calculator.model.positivenum;
 
+import java.math.BigDecimal;
+
 public class PositiveNum {
 
-    private final int number;
+    private final BigDecimal number;
 
     public PositiveNum(String str) {
-        int number = convertToInt(str);
+        BigDecimal number = convertToNumber(str);
         validatePositive(number);
         this.number = number;
     }
 
-    public int getNumber() {
+    public BigDecimal getNumber() {
         return number;
     }
 
-    private int convertToInt(String str) { // 숫자인지 체크하는 것이 아닌 숫자 변경하는 것이기 때문에 메서드명 수정 필요
+    private BigDecimal convertToNumber(String str) {
         try {
-            return Integer.parseInt(str);
+            return new BigDecimal(str);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("올바른 형식으로 입력해주십시오.");
         }
     }
 
-    private void validatePositive(int number) {
-        if (number < 0) {
+    private void validatePositive(BigDecimal number) {
+        if (number.compareTo(new BigDecimal("0")) <= 0) {
             throw new IllegalArgumentException("양수만 입력할 수 있습니다.");
         }
     }
