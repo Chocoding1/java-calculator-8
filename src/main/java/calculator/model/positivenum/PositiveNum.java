@@ -5,7 +5,7 @@ public class PositiveNum {
     private final int number;
 
     public PositiveNum(String str) {
-        int number = isNumeric(str);
+        int number = convertToInt(str);
         validatePositive(number);
         this.number = number;
     }
@@ -14,11 +14,11 @@ public class PositiveNum {
         return number;
     }
 
-    private int isNumeric(String str) {
+    private int convertToInt(String str) { // 숫자인지 체크하는 것이 아닌 숫자 변경하는 것이기 때문에 메서드명 수정 필요
         try {
             return Integer.parseInt(str);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("커스텀 구분자를 추가해주십시오.");
+            throw new IllegalArgumentException("올바른 형식으로 입력해주십시오.");
         }
     }
 
