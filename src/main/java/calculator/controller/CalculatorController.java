@@ -27,6 +27,10 @@ public class CalculatorController {
 
     public void startApp() {
         String inputStr = inputView.renderingInputView();
+        if (isEmpty(inputStr)) {
+            return;
+        }
+
         Str str = new Str(inputStr);
 
         String delimiters = delimiter.addCustomDelimiters(str);
@@ -37,6 +41,14 @@ public class CalculatorController {
         int result = calculator.plus();
 
         outputView.renderingOutputView(result);
+    }
+
+    private boolean isEmpty(String inputStr) {
+        if (inputStr.isEmpty()) {
+            outputView.renderingOutputView(0);
+            return true;
+        }
+        return false;
     }
 
 }
