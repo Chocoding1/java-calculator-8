@@ -11,7 +11,7 @@ import java.util.Set;
 public class Delimiter {
 
     private static Delimiter instance;
-    private final Set<Character> delimiters = new HashSet<>(List.of(',', ':'));
+    private final Set<String> delimiters = new HashSet<>(List.of(",", ":"));
 
     private Delimiter() {
     }
@@ -35,7 +35,7 @@ public class Delimiter {
     public String getDelimiters() {
         StringBuilder sb = new StringBuilder().append("[");
 
-        for (Character delimiter : delimiters) {
+        for (String delimiter : delimiters) {
             sb.append(delimiter);
         }
         sb.append("]");
@@ -45,7 +45,7 @@ public class Delimiter {
 
     private void addDelimiter(String customDelimiters) {
         for (int i = 0; i < customDelimiters.length(); i++) {
-            delimiters.add(customDelimiters.charAt(i));
+            delimiters.add(customDelimiters.charAt(i) + "");
         }
     }
 
