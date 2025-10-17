@@ -34,9 +34,9 @@ public class CalculatorController {
 
         Str str = new Str(inputStr);
 
-        String delimiters = delimiter.addCustomDelimiters(str);
+        delimiter.addCustomDelimiters(str);
 
-        List<PositiveNum> positiveNumList = str.separateStr(delimiters);
+        List<PositiveNum> positiveNumList = str.separateStr(delimiter.getDelimiters());
 
         Calculator calculator = new Calculator(positiveNumList);
         BigDecimal result = calculator.plus();

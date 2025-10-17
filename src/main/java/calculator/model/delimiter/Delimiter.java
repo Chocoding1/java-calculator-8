@@ -23,13 +23,12 @@ public class Delimiter {
         return instance;
     }
 
-    public String addCustomDelimiters(Str str) {
+    public void addCustomDelimiters(Str str) {
         String inputStr = str.getStr();
         if (str.isContainCustomDelimiters()) {
             String customDelimiters = extractCustomDelimiters(inputStr);
             addDelimiter(customDelimiters);
         }
-        return getDelimiters();
     }
 
     public String getDelimiters() {

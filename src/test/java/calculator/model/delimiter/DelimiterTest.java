@@ -20,8 +20,8 @@ class DelimiterTest {
 
         //when & then
         assertSimpleTest(() -> {
-            String customDelimiters = delimiter.addCustomDelimiters(str);
-            assertThat(customDelimiters).contains(":", ",", ";", "*");
+            delimiter.addCustomDelimiters(str);
+            assertThat(delimiter.getDelimiters()).contains(":", ",", ";", "*");
         });
     }
 
@@ -34,8 +34,8 @@ class DelimiterTest {
 
         //when & then
         assertSimpleTest(() -> {
-            String customDelimiters = delimiter.addCustomDelimiters(str);
-            assertThat(customDelimiters).contains(":", ",");
+            delimiter.addCustomDelimiters(str);
+            assertThat(delimiter.getDelimiters()).contains(":", ",");
         });
     }
 }
