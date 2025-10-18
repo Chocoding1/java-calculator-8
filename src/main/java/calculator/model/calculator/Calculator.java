@@ -27,8 +27,16 @@ public class Calculator {
     }
 
     private boolean isInteger(BigDecimal result) {
-        BigDecimal remainder = result.remainder(new BigDecimal("1"));
-        return remainder.compareTo(new BigDecimal("0")) == 0;
+        BigDecimal scale = getScale(result);
+        return isEqualToZero(scale);
+    }
+
+    private static BigDecimal getScale(BigDecimal result) {
+        return result.remainder(new BigDecimal("1"));
+    }
+
+    private static boolean isEqualToZero(BigDecimal scale) {
+        return scale.compareTo(new BigDecimal("0")) == 0;
     }
 
     private BigDecimal removeScale(BigDecimal result) {
