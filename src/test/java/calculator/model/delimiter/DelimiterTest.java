@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 class DelimiterTest {
 
-    private final Delimiter delimiter = Delimiter.getInstance();
+    private final Delimiter delimiter = new Delimiter();
 
     @Test
     @DisplayName("커스텀 구분자 존재 시, 구분자 추가 확인 테스트")

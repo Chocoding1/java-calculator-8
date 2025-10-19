@@ -14,7 +14,7 @@ public class CalculatorController {
     private static CalculatorController instance;
     private final InputView inputView = InputView.getInstance();
     private final OutputView outputView = OutputView.getInstance();
-    private final Delimiter delimiter = Delimiter.getInstance();
+    private final Delimiter delimiter = new Delimiter();
 
     private CalculatorController() {
     }

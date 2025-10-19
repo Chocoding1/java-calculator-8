@@ -10,18 +10,7 @@ import java.util.Set;
 
 public class Delimiter {
 
-    private static Delimiter instance;
     private final Set<String> delimiters = new HashSet<>(List.of(",", ":"));
-
-    private Delimiter() {
-    }
-
-    public static Delimiter getInstance() {
-        if (instance == null) {
-            return new Delimiter();
-        }
-        return instance;
-    }
 
     public void addCustomDelimiters(Str str) {
         String inputStr = str.getStr();
