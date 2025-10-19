@@ -14,7 +14,6 @@ public class CalculatorController {
     private static CalculatorController instance;
     private final InputView inputView = InputView.getInstance();
     private final OutputView outputView = OutputView.getInstance();
-    private final Delimiter delimiter = new Delimiter();
 
     private CalculatorController() {
     }
@@ -34,6 +33,7 @@ public class CalculatorController {
 
         Str str = new Str(inputStr);
 
+        Delimiter delimiter = new Delimiter();
         delimiter.addCustomDelimiters(str);
 
         List<PositiveNum> positiveNumList = str.separateStr(delimiter.getDelimiters());
