@@ -26,7 +26,7 @@ public class CalculatorController {
     }
 
     public void startApp() {
-        String inputStr = inputView.renderingInputView();
+        String inputStr = inputView.getInputStr();
         if (isEmpty(inputStr)) {
             return;
         }

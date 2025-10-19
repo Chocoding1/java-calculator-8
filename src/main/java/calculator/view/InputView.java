@@ -17,8 +17,9 @@ public class InputView {
         return instance;
     }
 
-    public String renderingInputView() {
-        System.out.println("덧셈할 문자열을 입력해 주세요.");
+    public String getInputStr() {
+        renderingInputView();
+
         String inputStr;
         try {
             inputStr = Console.readLine();
@@ -26,5 +27,10 @@ public class InputView {
             return "";
         }
         return inputStr.strip();
+
+    }
+
+    private void renderingInputView() {
+        System.out.println("덧셈할 문자열을 입력해 주세요.");
     }
 }
