@@ -11,7 +11,8 @@ public class Extractor {
             try {
                 return input.substring(2, endIdx);
             } catch (Exception e) {
-                throw new IllegalArgumentException("커스텀 구분자는 " + CUSTOM_DELIMITER_POSTFIX + "로 감싸야 합니다." + e.getMessage());
+                throw new IllegalArgumentException(
+                        "커스텀 구분자는 " + CUSTOM_DELIMITER_POSTFIX + "로 감싸야 합니다." + e.getMessage());
             }
         }
 
@@ -23,17 +24,18 @@ public class Extractor {
     }
 
     public String extractExpression(String input) {
-        if (input.startsWith(CUSTOM_DELIMITER_PREFIX)) {
-            int endIdx = input.indexOf(CUSTOM_DELIMITER_POSTFIX);
-            try {
-                return input.substring(endIdx + 2);
-            } catch (Exception e) {
-                throw new IllegalArgumentException("계산식 추출 중 예외 발생: " + e.getMessage());
-            }
+        if (input.startsWith(CUSTOM_DELIMITER_PREFIX) && !input.contains(CUSTOM_DELIMITER_POSTFIX)) {
+            throw new IllegalArgumentException(
+                    "커스텀 구분자는 " + CUSTOM_DELIMITER_PREFIX + "와 " + CUSTOM_DELIMITER_POSTFIX + "로 감싸야 합니다.");
+        }
+        if (!input.startsWith(CUSTOM_DELIMITER_PREFIX) && input.contains(CUSTOM_DELIMITER_POSTFIX)) {
+            throw new IllegalArgumentException(
+                    "커스텀 구분자는 " + CUSTOM_DELIMITER_PREFIX + "와 " + CUSTOM_DELIMITER_POSTFIX + "로 감싸야 합니다.");
         }
 
-        if (input.contains(CUSTOM_DELIMITER_POSTFIX)) {
-            throw new IllegalArgumentException("커스텀 구분자는 " + CUSTOM_DELIMITER_PREFIX + "로 시작해야 합니다.");
+        if (input.startsWith(CUSTOM_DELIMITER_PREFIX)) {
+            int endIdx = input.indexOf(CUSTOM_DELIMITER_POSTFIX);
+            return input.substring(endIdx + 2);
         }
 
         return input;
