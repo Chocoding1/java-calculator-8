@@ -2,6 +2,8 @@ package calculator;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,10 +18,11 @@ class ApplicationTest extends NsTest {
         });
     }
 
-    @Test
-    void 예외_테스트() {
+    @ParameterizedTest
+    @ValueSource(strings = {"-1,2,3", "1,2;3", "//;\\n1%2%3", "//&\\m1,2,3", "/*\\nm1,2,3", ";,,", "//\\n**"})
+    void 예외_테스트(String input) {
         assertSimpleTest(() ->
-            assertThatThrownBy(() -> runException("-1,2,3"))
+            assertThatThrownBy(() -> runException(input))
                 .isInstanceOf(IllegalArgumentException.class)
         );
     }
