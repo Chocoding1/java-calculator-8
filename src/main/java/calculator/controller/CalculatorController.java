@@ -1,29 +1,24 @@
 package calculator.controller;
 
-import calculator.model.CustomDelimiterExtractor;
 import calculator.model.Delimiter;
-import calculator.model.ExpressionExtractor;
 import calculator.model.ExpressionSeparator;
+import calculator.model.Extractor;
 import calculator.model.PositiveNumber;
 import calculator.view.InputView;
 import calculator.view.OutputView;
-import java.util.Arrays;
 import java.util.List;
 
 public class CalculatorController {
 
     private final InputView inputView;
-    private final CustomDelimiterExtractor customDelimiterExtractor;
-    private final ExpressionExtractor expressionExtractor;
+    private final Extractor extractor;
     private final ExpressionSeparator expressionSeparator;
     private final OutputView outputView;
 
-    public CalculatorController(InputView inputView, CustomDelimiterExtractor customDelimiterExtractor,
-                                ExpressionExtractor expressionExtractor, ExpressionSeparator expressionSeparator,
-                                OutputView outputView) {
+    public CalculatorController(InputView inputView, Extractor extractor,
+                                ExpressionSeparator expressionSeparator, OutputView outputView) {
         this.inputView = inputView;
-        this.customDelimiterExtractor = customDelimiterExtractor;
-        this.expressionExtractor = expressionExtractor;
+        this.extractor = extractor;
         this.expressionSeparator = expressionSeparator;
         this.outputView = outputView;
     }
@@ -31,11 +26,11 @@ public class CalculatorController {
     public void run() {
         String input = inputView.getInput();
 
-        String customDelimiters = customDelimiterExtractor.extractCustomDelimiter(input);
+        String customDelimiters = extractor.extractCustomDelimiter(input);
 
         Delimiter delimiter = new Delimiter(customDelimiters);
 
-        String expression = expressionExtractor.extractExpression(input);
+        String expression = extractor.extractExpression(input);
 
         List<PositiveNumber> positiveNumbers = expressionSeparator.separateExpression(expression, delimiter);
 

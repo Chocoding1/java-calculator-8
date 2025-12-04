@@ -1,9 +1,8 @@
 package calculator.config;
 
 import calculator.controller.CalculatorController;
-import calculator.model.CustomDelimiterExtractor;
-import calculator.model.ExpressionExtractor;
 import calculator.model.ExpressionSeparator;
+import calculator.model.Extractor;
 import calculator.view.InputView;
 import calculator.view.OutputView;
 
@@ -11,15 +10,13 @@ public class CalculatorConfig {
 
     private CalculatorController calculatorController;
     private InputView inputView;
-    private CustomDelimiterExtractor customDelimiterExtractor;
-    private ExpressionExtractor expressionExtractor;
+    private Extractor extractor;
     private ExpressionSeparator expressionSeparator;
     private OutputView outputView;
 
     public CalculatorController calculatorController() {
         if (calculatorController == null) {
-            calculatorController = new CalculatorController(inputView(), customDelimiterExtractor(),
-                    expressionExtractor(), expressionSeparator(), outputView());
+            calculatorController = new CalculatorController(inputView(), extractor(), expressionSeparator(), outputView());
         }
         return calculatorController;
     }
@@ -31,18 +28,11 @@ public class CalculatorConfig {
         return inputView;
     }
 
-    private CustomDelimiterExtractor customDelimiterExtractor() {
-        if (customDelimiterExtractor == null) {
-            customDelimiterExtractor = new CustomDelimiterExtractor();
+    private Extractor extractor() {
+        if (extractor == null) {
+            extractor = new Extractor();
         }
-        return customDelimiterExtractor;
-    }
-
-    private ExpressionExtractor expressionExtractor() {
-        if (expressionExtractor == null) {
-            expressionExtractor = new ExpressionExtractor();
-        }
-        return expressionExtractor;
+        return extractor;
     }
 
     private ExpressionSeparator expressionSeparator() {
