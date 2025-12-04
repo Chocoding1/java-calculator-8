@@ -4,9 +4,11 @@ import calculator.model.CustomDelimiterExtractor;
 import calculator.model.Delimiter;
 import calculator.model.ExpressionExtractor;
 import calculator.model.ExpressionSeparator;
+import calculator.model.PositiveNumber;
 import calculator.view.InputView;
 import calculator.view.OutputView;
 import java.util.Arrays;
+import java.util.List;
 
 public class CalculatorController {
 
@@ -35,15 +37,19 @@ public class CalculatorController {
 
         String expression = expressionExtractor.extractExpression(input);
 
-        int[] numbers = expressionSeparator.separateExpression(expression, delimiter);
+        List<PositiveNumber> positiveNumbers = expressionSeparator.separateExpression(expression, delimiter);
 
-        int result = sumNumbers(numbers);
+        int result = sumNumbers(positiveNumbers);
 
         outputView.printResult(result);
     }
 
-    private int sumNumbers(int[] numbers) {
-        return Arrays.stream(numbers)
-                .sum();
+    private int sumNumbers(List<PositiveNumber> positiveNumbers) {
+        int sum = 0;
+
+        for (PositiveNumber positiveNumber : positiveNumbers) {
+            sum += positiveNumber.getNumber();
+        }
+        return sum;
     }
 }
