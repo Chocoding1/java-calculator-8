@@ -11,9 +11,14 @@ public class Extractor {
             try {
                 return input.substring(2, endIdx);
             } catch (Exception e) {
-                throw new IllegalArgumentException("커스텀 구분자 추출 중 예외 발생: " + e.getMessage());
+                throw new IllegalArgumentException("커스텀 구분자는 " + CUSTOM_DELIMITER_POSTFIX + "로 감싸야 합니다." + e.getMessage());
             }
         }
+
+        if (input.contains(CUSTOM_DELIMITER_POSTFIX)) {
+            throw new IllegalArgumentException("커스텀 구분자는 " + CUSTOM_DELIMITER_PREFIX + "로 시작해야 합니다.");
+        }
+
         return "";
     }
 
@@ -26,6 +31,11 @@ public class Extractor {
                 throw new IllegalArgumentException("계산식 추출 중 예외 발생: " + e.getMessage());
             }
         }
+
+        if (input.contains(CUSTOM_DELIMITER_POSTFIX)) {
+            throw new IllegalArgumentException("커스텀 구분자는 " + CUSTOM_DELIMITER_PREFIX + "로 시작해야 합니다.");
+        }
+
         return input;
     }
 }
