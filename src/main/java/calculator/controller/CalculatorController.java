@@ -5,6 +5,7 @@ import calculator.model.Delimiter;
 import calculator.model.ExpressionExtractor;
 import calculator.model.ExpressionSeparator;
 import calculator.view.InputView;
+import java.util.Arrays;
 
 public class CalculatorController {
 
@@ -31,5 +32,12 @@ public class CalculatorController {
         String expression = expressionExtractor.extractExpression(input);
 
         int[] numbers = expressionSeparator.separateExpression(expression, delimiter);
+
+        int result = sumNumbers(numbers);
+    }
+
+    private int sumNumbers(int[] numbers) {
+        return Arrays.stream(numbers)
+                .sum();
     }
 }
