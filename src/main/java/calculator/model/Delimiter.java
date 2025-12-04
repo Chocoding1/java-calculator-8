@@ -17,7 +17,7 @@ public class Delimiter {
             delimiters.add(customDelimiters.charAt(i));
         }
 
-        this.delimiters = new HashSet<Character>(delimiters);
+        this.delimiters = new HashSet<>(delimiters);
     }
 
     public String getDelimiters() {
