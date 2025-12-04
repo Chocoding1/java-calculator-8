@@ -3,6 +3,7 @@ package calculator.model;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Delimiter {
 
@@ -17,5 +18,11 @@ public class Delimiter {
         }
 
         this.delimiters = new HashSet<Character>(delimiters);
+    }
+
+    public String getDelimiters() {
+        return delimiters.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining("|"));
     }
 }
