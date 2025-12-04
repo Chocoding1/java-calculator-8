@@ -5,14 +5,14 @@ public class CustomDelimiterExtractor {
     private static final String CUSTOM_DELIMITER_PREFIX = "//";
     private static final String CUSTOM_DELIMITER_POSTFIX = "\\n";
 
-    public String addCustomDelimiter(String input) {
+    public String extractCustomDelimiter(String input) {
         if (input.startsWith(CUSTOM_DELIMITER_PREFIX)) {
-            return extractCustomDelimiter(input);
+            return extract(input);
         }
         return "";
     }
 
-    private String extractCustomDelimiter(String input) {
+    private String extract(String input) {
         int endIdx = input.indexOf(CUSTOM_DELIMITER_POSTFIX);
         try {
             return input.substring(2, endIdx);

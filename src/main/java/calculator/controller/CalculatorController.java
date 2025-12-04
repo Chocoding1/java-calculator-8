@@ -17,8 +17,10 @@ public class CalculatorController {
     public void run() {
         String input = inputView.getInput();
 
-        String customDelimiters = customDelimiterExtractor.addCustomDelimiter(input);
+        String customDelimiters = customDelimiterExtractor.extractCustomDelimiter(input);
 
         Delimiter delimiter = new Delimiter(customDelimiters);
+
+
     }
 }
