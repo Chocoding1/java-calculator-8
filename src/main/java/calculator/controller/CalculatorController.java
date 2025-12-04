@@ -2,20 +2,20 @@ package calculator.controller;
 
 import calculator.model.CustomDelimiterExtractor;
 import calculator.model.Delimiter;
-import calculator.model.ExpressionSeparator;
+import calculator.model.ExpressionExtractor;
 import calculator.view.InputView;
 
 public class CalculatorController {
 
     private final InputView inputView;
     private final CustomDelimiterExtractor customDelimiterExtractor;
-    private final ExpressionSeparator expressionSeparator;
+    private final ExpressionExtractor expressionExtractor;
 
     public CalculatorController(InputView inputView, CustomDelimiterExtractor customDelimiterExtractor,
-                                ExpressionSeparator expressionSeparator) {
+                                ExpressionExtractor expressionExtractor) {
         this.inputView = inputView;
         this.customDelimiterExtractor = customDelimiterExtractor;
-        this.expressionSeparator = expressionSeparator;
+        this.expressionExtractor = expressionExtractor;
     }
 
     public void run() {
@@ -25,6 +25,6 @@ public class CalculatorController {
 
         Delimiter delimiter = new Delimiter(customDelimiters);
 
-        String expression = expressionSeparator.separate(input);
+        String expression = expressionExtractor.extractExpression(input);
     }
 }

@@ -2,7 +2,7 @@ package calculator.config;
 
 import calculator.controller.CalculatorController;
 import calculator.model.CustomDelimiterExtractor;
-import calculator.model.ExpressionSeparator;
+import calculator.model.ExpressionExtractor;
 import calculator.view.InputView;
 
 public class CalculatorConfig {
@@ -10,7 +10,7 @@ public class CalculatorConfig {
     private CalculatorController calculatorController;
     private InputView inputView;
     private CustomDelimiterExtractor customDelimiterExtractor;
-    private ExpressionSeparator expressionSeparator;
+    private ExpressionExtractor expressionExtractor;
 
     public CalculatorController calculatorController() {
         if (calculatorController == null) {
@@ -33,10 +33,10 @@ public class CalculatorConfig {
         return customDelimiterExtractor;
     }
 
-    private ExpressionSeparator expressionSeparator() {
-        if (expressionSeparator == null) {
-            expressionSeparator = new ExpressionSeparator();
+    private ExpressionExtractor expressionSeparator() {
+        if (expressionExtractor == null) {
+            expressionExtractor = new ExpressionExtractor();
         }
-        return expressionSeparator;
+        return expressionExtractor;
     }
 }
