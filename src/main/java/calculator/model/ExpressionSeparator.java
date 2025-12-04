@@ -8,8 +8,7 @@ public class ExpressionSeparator {
         String delimiters = delimiter.getDelimiters();
 
         return Arrays.stream(expression.split(delimiters))
-                .mapToInt(Integer::parseInt)
-                .mapToObj(PositiveNumber::new)
+                .map(PositiveNumber::new)
                 .toList();
     }
 
