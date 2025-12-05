@@ -26,7 +26,7 @@ public class Delimiter {
         return expression.split(pattern);
     }
 
-    public String getDelimiters() {
+    private String getDelimiters() {
         return String.join("|", delimiters);
     }
 }
