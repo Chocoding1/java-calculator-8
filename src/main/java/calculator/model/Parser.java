@@ -1,5 +1,10 @@
 package calculator.model;
 
+/**
+ * 리팩토링 가이드
+ * https://chatgpt.com/s/t_6932a43907248191871d924077ca49d9
+ * https://chatgpt.com/s/t_6932a44647488191906e88a7f959a2e2
+ */
 public class Parser {
 
     private static final String CUSTOM_DELIMITER_PREFIX = "//";

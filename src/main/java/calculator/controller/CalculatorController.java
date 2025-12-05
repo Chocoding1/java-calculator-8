@@ -10,7 +10,8 @@ import calculator.view.OutputView;
 /**
  * 리팩토링 가이드
  * https://chatgpt.com/s/t_69327b86bf04819196721febecc2d61c
- * https://chatgpt.com/s/t_69327baf7cec8191b10369f15b622e0d https://chatgpt.com/s/t_693292476668819188c092c6f69f1143
+ * https://chatgpt.com/s/t_69327baf7cec8191b10369f15b622e0d
+ * https://chatgpt.com/s/t_693292476668819188c092c6f69f1143
  */
 public class CalculatorController {
 
@@ -18,8 +19,7 @@ public class CalculatorController {
     private final Parser parser;
     private final OutputView outputView;
 
-    public CalculatorController(InputView inputView, Parser parser,
-                                OutputView outputView) {
+    public CalculatorController(InputView inputView, Parser parser, OutputView outputView) {
         this.inputView = inputView;
         this.parser = parser;
         this.outputView = outputView;
