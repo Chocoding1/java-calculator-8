@@ -1,5 +1,6 @@
 package calculator.model;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -11,6 +12,7 @@ import java.util.List;
  * https://chatgpt.com/s/t_6932896922d08191ad5e4a43f54d38b8
  * https://chatgpt.com/s/t_69328cc157d8819191f5e04b3f39b722
  * https://chatgpt.com/s/t_69328c9a3edc819188126182765bba7f
+ * https://chatgpt.com/s/t_69328ef746408191ab13a9c1390ea357
  */
 public class PositiveNumbers {
 
@@ -18,6 +20,14 @@ public class PositiveNumbers {
 
     public PositiveNumbers(List<PositiveNumber> positiveNumbers) {
         this.positiveNumbers = List.copyOf(positiveNumbers);
+    }
+
+    public static PositiveNumbers from(String[] tokens) {
+        return new PositiveNumbers(
+                Arrays.stream(tokens)
+                        .map(PositiveNumber::new)
+                        .toList()
+        );
     }
 
     public int sum() {
