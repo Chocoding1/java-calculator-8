@@ -14,7 +14,7 @@ public class PositiveNumbers {
         int sum = 0;
 
         for (PositiveNumber positiveNumber : positiveNumbers) {
-            sum += positiveNumber.toInt();
+            sum += positiveNumber.getNumber();
         }
         return sum;
     }
