@@ -19,7 +19,7 @@ class PositiveNumberTest {
         PositiveNumber positiveNumber = new PositiveNumber(initialNumber);
 
         //then
-        assertThat(positiveNumber.getNumber()).isEqualTo(1);
+        assertThat(positiveNumber.toInt()).isEqualTo(1);
     }
 
     @Test

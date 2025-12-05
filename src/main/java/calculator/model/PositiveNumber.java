@@ -10,7 +10,7 @@ public class PositiveNumber {
         this.number = number;
     }
 
-    public int getNumber() {
+    public int toInt() {
         return number;
     }
 
