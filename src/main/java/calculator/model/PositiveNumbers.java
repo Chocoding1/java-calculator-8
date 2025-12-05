@@ -1,0 +1,21 @@
+package calculator.model;
+
+import java.util.List;
+
+public class PositiveNumbers {
+
+    private final List<PositiveNumber> positiveNumbers;
+
+    public PositiveNumbers(List<PositiveNumber> positiveNumbers) {
+        this.positiveNumbers = positiveNumbers;
+    }
+
+    public int sumNumbers() {
+        int sum = 0;
+
+        for (PositiveNumber positiveNumber : positiveNumbers) {
+            sum += positiveNumber.getNumber();
+        }
+        return sum;
+    }
+}

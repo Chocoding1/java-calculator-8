@@ -3,10 +3,9 @@ package calculator.controller;
 import calculator.model.Delimiter;
 import calculator.model.ExpressionSeparator;
 import calculator.model.Extractor;
-import calculator.model.PositiveNumber;
+import calculator.model.PositiveNumbers;
 import calculator.view.InputView;
 import calculator.view.OutputView;
-import java.util.List;
 
 public class CalculatorController {
 
@@ -32,19 +31,10 @@ public class CalculatorController {
 
         String expression = extractor.extractExpression(input);
 
-        List<PositiveNumber> positiveNumbers = expressionSeparator.separateExpression(expression, delimiter);
+        PositiveNumbers positiveNumbers = expressionSeparator.separateExpression(expression, delimiter);
 
-        int result = sumNumbers(positiveNumbers);
+        int result = positiveNumbers.sumNumbers();
 
         outputView.printResult(result);
-    }
-
-    private int sumNumbers(List<PositiveNumber> positiveNumbers) {
-        int sum = 0;
-
-        for (PositiveNumber positiveNumber : positiveNumbers) {
-            sum += positiveNumber.getNumber();
-        }
-        return sum;
     }
 }

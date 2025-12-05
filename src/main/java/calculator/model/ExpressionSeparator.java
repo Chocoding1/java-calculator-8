@@ -4,12 +4,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ExpressionSeparator {
-    public List<PositiveNumber> separateExpression(String expression, Delimiter delimiter) {
+    public PositiveNumbers separateExpression(String expression, Delimiter delimiter) {
         String delimiters = delimiter.getDelimiters();
 
-        return Arrays.stream(expression.split(delimiters))
+        List<PositiveNumber> positiveNumbers = Arrays.stream(expression.split(delimiters))
                 .map(PositiveNumber::new)
                 .toList();
+
+        return new PositiveNumbers(positiveNumbers);
     }
 
 }
