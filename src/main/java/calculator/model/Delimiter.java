@@ -1,28 +1,26 @@
 package calculator.model;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
+/**
+ * 리팩토링 가이드
+ * https://chatgpt.com/s/t_69327cdbc6308191a5d5adb0ff69daed
+ * https://chatgpt.com/s/t_69328447a64c8191b17cd6cd826a7f2b
+ */
 public class Delimiter {
 
-    private final Set<Character> delimiters;
+    private static final Set<String> DEFAULT_DELIMITERS = Set.of(",", ":");
+    private final Set<String> delimiters;
 
     public Delimiter(String customDelimiters) {
-        ArrayList<Character> delimiters = new ArrayList<>();
-        delimiters.add(',');
-        delimiters.add(':');
+        this.delimiters = new HashSet<>(DEFAULT_DELIMITERS);
         for (int i = 0; i < customDelimiters.length(); i++) {
-            delimiters.add(customDelimiters.charAt(i));
+            delimiters.add(String.valueOf(customDelimiters.charAt(i)));
         }
-
-        this.delimiters = new HashSet<>(delimiters);
     }
 
     public String getDelimiters() {
-        return delimiters.stream()
-                .map(String::valueOf)
-                .collect(Collectors.joining("|"));
+        return String.join("|", delimiters);
     }
 }
