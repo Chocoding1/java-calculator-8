@@ -1,7 +1,8 @@
 package calculator.controller;
 
 import calculator.model.Delimiter;
-import calculator.model.Extractor;
+import calculator.model.ParsedInput;
+import calculator.model.Parser;
 import calculator.model.PositiveNumbers;
 import calculator.view.InputView;
 import calculator.view.OutputView;
@@ -15,43 +16,44 @@ import calculator.view.OutputView;
 public class CalculatorController {
 
     private final InputView inputView;
-    private final Extractor extractor;
+    private final Parser parser;
     private final OutputView outputView;
 
-    public CalculatorController(InputView inputView, Extractor extractor,
+    public CalculatorController(InputView inputView, Parser parser,
                                 OutputView outputView) {
         this.inputView = inputView;
-        this.extractor = extractor;
+        this.parser = parser;
         this.outputView = outputView;
     }
 
     public void run() {
         String input = getInput();
 
-        Delimiter delimiter = createDelimiter(input);
+        ParsedInput parsedInput = parseInput(input);
 
-        PositiveNumbers positiveNumbers = parseExpression(input, delimiter);
+        Delimiter delimiter = createDelimiter(parsedInput.customDelimiters());
+
+        PositiveNumbers positiveNumbers = parseExpression(delimiter, parsedInput.expression());
 
         int result = calculate(positiveNumbers);
 
         print(result);
     }
 
+    private ParsedInput parseInput(String input) {
+        return parser.parse(input);
+    }
+
     private String getInput() {
         return inputView.getInput();
     }
 
-    private Delimiter createDelimiter(String input) {
-        String customDelimiters = extractor.extractCustomDelimiter(input);
-
+    private Delimiter createDelimiter(String customDelimiters) {
         return new Delimiter(customDelimiters);
     }
 
-    private PositiveNumbers parseExpression(String input, Delimiter delimiter) {
-        String expression = extractor.extractExpression(input);
-
+    private PositiveNumbers parseExpression(Delimiter delimiter, String expression) {
         String[] tokens = delimiter.split(expression);
-
         return PositiveNumbers.from(tokens);
     }
 

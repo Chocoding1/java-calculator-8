@@ -1,7 +1,7 @@
 package calculator.config;
 
 import calculator.controller.CalculatorController;
-import calculator.model.Extractor;
+import calculator.model.Parser;
 import calculator.view.InputView;
 import calculator.view.OutputView;
 
@@ -9,7 +9,7 @@ public class CalculatorConfig {
 
     private CalculatorController calculatorController;
     private InputView inputView;
-    private Extractor extractor;
+    private Parser parser;
     private OutputView outputView;
 
     public CalculatorController calculatorController() {
@@ -26,11 +26,11 @@ public class CalculatorConfig {
         return inputView;
     }
 
-    private Extractor extractor() {
-        if (extractor == null) {
-            extractor = new Extractor();
+    private Parser extractor() {
+        if (parser == null) {
+            parser = new Parser();
         }
-        return extractor;
+        return parser;
     }
 
     private OutputView outputView() {
