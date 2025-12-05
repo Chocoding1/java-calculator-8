@@ -10,7 +10,7 @@ public class PositiveNumbers {
         this.positiveNumbers = positiveNumbers;
     }
 
-    public int sumNumbers() {
+    public int sum() {
         int sum = 0;
 
         for (PositiveNumber positiveNumber : positiveNumbers) {

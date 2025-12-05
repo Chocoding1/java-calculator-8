@@ -33,7 +33,7 @@ public class CalculatorController {
 
         PositiveNumbers positiveNumbers = expressionSeparator.separateExpression(expression, delimiter);
 
-        int result = positiveNumbers.sumNumbers();
+        int result = positiveNumbers.sum();
 
         outputView.printResult(result);
     }
