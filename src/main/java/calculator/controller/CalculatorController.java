@@ -23,18 +23,38 @@ public class CalculatorController {
     }
 
     public void run() {
-        String input = inputView.getInput();
+        String input = getInput();
 
+        Delimiter delimiter = createDelimiter(input);
+
+        PositiveNumbers positiveNumbers = parseExpression(input, delimiter);
+
+        int result = calculate(positiveNumbers);
+
+        print(result);
+    }
+
+    private String getInput() {
+        return inputView.getInput();
+    }
+
+    private Delimiter createDelimiter(String input) {
         String customDelimiters = extractor.extractCustomDelimiter(input);
 
-        Delimiter delimiter = new Delimiter(customDelimiters);
+        return new Delimiter(customDelimiters);
+    }
 
+    private PositiveNumbers parseExpression(String input, Delimiter delimiter) {
         String expression = extractor.extractExpression(input);
 
-        PositiveNumbers positiveNumbers = expressionSeparator.separateExpression(expression, delimiter);
+        return expressionSeparator.separateExpression(expression, delimiter);
+    }
 
-        int result = positiveNumbers.sum();
+    private static int calculate(PositiveNumbers positiveNumbers) {
+        return positiveNumbers.sum();
+    }
 
+    private void print(int result) {
         outputView.printResult(result);
     }
 }
